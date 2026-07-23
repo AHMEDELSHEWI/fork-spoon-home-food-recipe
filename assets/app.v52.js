@@ -5,7 +5,7 @@ const SUPPORT_LOCAL='0500266720', SUPPORT_WA='966500266720';
 const CATS=['الكل','العروض','الأكثر طلبًا','المحاشي','الأطباق الرئيسية','المعجنات','الحلويات','التورتات'];
 const GROUP_ORDER=['المحاشي','الأطباق الرئيسية','المعجنات','الحلويات','التورتات'];
 let currentCat='الكل',cart=[],favorites=new Set(),selectedProduct=null,selectedOptions=new Set(),selectedCakePrice=null,lastOrder=null,currentLocationUrl='';
-const $=id=>document.getElementById(id);const sar=n=>`${Number(n||0).toFixed(0)} SAR`;const img=k=>{const s=String(k||'');return /^(data:image\/|blob:|https?:\/\/)/.test(s)?s:(IMAGES[s]||IMAGES.blank_product_image)};
+const $=id=>document.getElementById(id);const sar=n=>`${Number(n||0).toFixed(0)} SAR`;const img=k=>{const s=String(k||'');return /^(data:image\/|blob:|https?:\/\/|(?:\.\/)?assets\/)/.test(s)?s:(IMAGES[s]||IMAGES.blank_product_image)};
 function toast(t){const x=$('toast');x.textContent=t;x.classList.add('show');setTimeout(()=>x.classList.remove('show'),1700)}
 function setScreen(name){document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));$(name+'Screen').classList.add('active');document.querySelectorAll('.bottom button').forEach(b=>b.classList.toggle('active',b.dataset.screen===name));window.scrollTo(0,0);if(name==='cart')renderCart();if(name==='profile')renderProfile();}
 function renderChips(){$('chips').innerHTML=CATS.map(c=>`<button class="chip ${c===currentCat?'active':''}" onclick="filterCat('${c}')">${c}</button>`).join('')}
